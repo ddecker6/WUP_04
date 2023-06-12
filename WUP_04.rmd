@@ -11,6 +11,7 @@ output:
 require(knitr)
 require(tidyverse)
 require(tigerstats)
+require(stats)
 thedata<-read.csv(file="GSScsv.csv")
 ```
 
@@ -88,8 +89,24 @@ print(posthoc)
 
 There is a significant difference between these categories. I reject the null hypothesis, based on degree, there is a difference on how people do on the test depending on their level of degree. What are the chances they are not different from each other? The probability is 0.000236, which is a very small number. Those chances are very slim, which can further lead us to conclude they are different. In the turkey test, the high school graduate has a p adj of 0.0037410 and LT high school graduate has a p adj of 0.0068774. These numbers show these two groups have the biggest difference of scores.
 
+```{r}
+# Assuming you have the "thedata" data frame with "DEGREE" and "WORDSUM" columns
 
+# Load the emmeans package
+library(emmeans)
 
-# Discussion and Conclusion
+# Perform one-way ANOVA
+result <- aov(WORDSUM ~ DEGREE, data = thedata)
+
+# Perform Scheffe's post hoc test
+comparison <- emmeans(result, pairwise ~ DEGREE, adjust = "scheffe")
+
+# Print the comparison table
+print(comparison)
+```
+
+The P values of high school has 0.0135 and lt high school has 0.0225.
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variables causes the other, or whether they perhaps are related for some other reason.  Watch the chapter 6 videos from the George Town videos collection.!-->
+
+In conclusion, there is a difference among the results based on degree. There are a few with similar results, and a few that are vastly different. By going through the results on each section, we were able to come to our conclusion. The biggest difference in results based on degree are the graduate and lt high school. So statistically, we were able to prove there is a difference between the groups scores based on degree. 
