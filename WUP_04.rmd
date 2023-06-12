@@ -51,11 +51,19 @@ labs(x = "DEGREE", y = "WORDSUM") +
 theme(plot.title = element_text(hjust = 0.5)) +
 ggtitle("Fancy Box Plot")
 ```
-According to the graph, we can visually understand there is a difference between the WORDSUM based on degree. A few of them look different from each other, and a few look like they may bump into each other. It looks like LT high school is different from graduate and junior college, and don't look like they would bump into eachother. While Bachelor and high school look like they actually might bump into eachother. This is all just by looking at the plot.
+
+
+According to the graph, we can visually understand there is a difference between the WORDSUM based on degree. A few of them look different from each other, and a few look like they may bump into each other. It looks like LT high school is different from graduate and junior college, and don't look like they would bump into each other. While Bachelor and high school look like they actually might bump into each other. This is all just by looking at the plot.
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+favstats(WORDSUM~DEGREE,data=thedata)
+```
+
+Using the numerical results of the average score for each group which is separated by degree, we can see there is a difference of scores. For example the group that scored the highest is the graduate. While the group that scored the lowest is lt high school. These two groups have the biggest difference of average statistically. Looking at these results, we can further understand that there may be difference of scores based on degrees.
 
 ## Inferential Results
 
