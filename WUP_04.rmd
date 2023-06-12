@@ -69,7 +69,27 @@ Using the numerical results of the average score for each group which is separat
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
+```{r}
+model1 <- aov(WORDSUM~DEGREE,data=thedata)
+summary.aov(model1)
+```
+
+```{r}
+# Perform one-way ANOVA
+model <- aov(WORDSUM ~ DEGREE, data = thedata)
+
+# Conduct post-hoc test (Tukey's HSD)
+posthoc <- TukeyHSD(model)
+
+# Print the results
+print(posthoc)
+```
+
+
+There is a significant difference between these categories. I reject the null hypothesis, based on degree, there is a difference on how people do on the test depending on their level of degree. What are the chances they are not different from each other? The probability is 0.000236, which is a very small number. Those chances are very slim, which can further lead us to conclude they are different. In the turkey test, the high school graduate has a p adj of 0.0037410 and LT high school graduate has a p adj of 0.0068774. These numbers show these two groups have the biggest difference of scores.
+
+
 
 # Discussion and Conclusion
 
-<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variables causes the other, or whether they perhaps are related for some other reason.  Watch the chapter 6 videos from the George Town videos collection.!-->
