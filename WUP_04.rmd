@@ -11,7 +11,12 @@ output:
 require(knitr)
 require(tidyverse)
 require(tigerstats)
+thedata<-read.csv(file="GSScsv.csv")
+```
 
+```{r eval=FALSE}
+thedata <- thedata %>%
+mutate(across(where(is.character), as.factor))
 ```
 
 # Introduction
@@ -26,6 +31,8 @@ $H_a$ There is a significant difference in average score on the WORDSUM test bet
 
 <!--Mention that you intend to use chatGPT to the greatest extent possible. Give credit to chatGPT when you use it to create code in your report. Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
+First, by looking at the data, we had to find out what sort of data we have. We used a past assignment, and pasted the data in and changed some stuff up, and found out we had numerical data. Which was WORDSUM, we now have a factor variable called DEGREE. We decided we have a problem called numerical~categorical type of problem. 
+
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
@@ -35,6 +42,16 @@ $H_a$ There is a significant difference in average score on the WORDSUM test bet
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+ggplot(thedata, aes(x = DEGREE, y = WORDSUM)) +
+geom_boxplot(fill = "skyblue", color = "darkblue", outlier.shape = NA) +
+theme_minimal() +
+labs(x = "DEGREE", y = "WORDSUM") +
+theme(plot.title = element_text(hjust = 0.5)) +
+ggtitle("Fancy Box Plot")
+```
+According to the graph, we can visually understand there is a difference between the WORDSUM based on degree. A few of them look different from each other, and a few look like they may bump into each other. It looks like LT high school is different from graduate and junior college, and don't look like they would bump into eachother. While Bachelor and high school look like they actually might bump into eachother. This is all just by looking at the plot.
 
 ### Numerical Descriptive Results
 
